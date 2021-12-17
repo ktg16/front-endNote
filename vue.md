@@ -8,7 +8,7 @@ mvvm模式   module-view-module         模板改变视图改变    视图改变
 
 vue提供一个双向数据绑定的  指令   v-model 绑定两个数据绑定name
 
-
+vue的vue-cli4.0  https://github.com/staven630/vue-cli4-config#compressimage
 
 ###### v-text
 

@@ -14,6 +14,12 @@
 
 Provider 接收一个value属性   传递给被包裹的组件  允许被包裹组件订阅context的变化  provider可以实现  一对多  多对一(里层的会覆盖外层数据)的对应关系
 
+
+
+
+
+两种引入方式
+
 ### **useContext**（函数式跨层通信）
 
 使用方法
@@ -25,6 +31,10 @@ useContext(ThemeContext)
 取决于Provider的value prop 函数组件 使用
 
 <Usercontext.Consumer> 包裹  value值调用
+
+
+
+
 
 ### class.contextType
 
@@ -41,8 +51,10 @@ useContext(ThemeContext)
 const ThemeContext = React.createContext()  用于子组件
 //创建Provider
 
-const ThemeProvider = ThemeContext.Provider
-
+const ThemeProvider = ThemeContext.Provider //供应者
+theme:{
+temmeColor:''
+}
 //使用ThemeProvider将组件包裹起来 
 return(
 	<ThemeProvider value={theme}>
@@ -67,7 +79,13 @@ return(
 )
 }
 
+Consumer组件 //消费者
 
+<PriceContext.Consumer>
+{
+	theme=>	<div>{theme}</div>
+}
+</PriceContext.Consumer>
 
 
 ```

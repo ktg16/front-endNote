@@ -2025,7 +2025,7 @@ add(3)(1)
 
 ​	  HOC: 高阶组件  connect()     React.memo(函数式组件)  / 类组件+shouldComponent/PureComponent
 
-
+HOC不要改变原始组件。使用组合
 
 封装一个具有版权信息的高阶组件WithCopy,内部接收一个组件，最终返回一个新的组件。
 
@@ -2050,9 +2050,24 @@ const WithCopy = Comp=>{
     }
 }
 export default WithCopy
+//HOC
+function logProps(WrappedComponent) {
+  return class extends React.Component {
+    componentDidUpdate(prevProps) {
+      console.log('Current props: ', this.props);
+      console.log('Previous props: ', prevProps);
+    }
+    render() {
+      // 将 input 组件包装在容器中，而不对其进行修改。Good!
+      return <WrappedComponent {...this.props} />;
+    }
+  }
+}
 ```
 
+注意
 
+可能已经注意到HOC与**容器组件模式**之间有相似之处。容器组件担任分离将高层和低层关注的责任，由容器管理订阅和状态，并将丙传递给处理渲染UI.HOC使用容器作为其实现的部件，你可以将 HOC 变成参数化容器组件。
 
 
 

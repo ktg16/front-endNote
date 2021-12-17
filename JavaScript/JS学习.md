@@ -368,3 +368,26 @@ import { default as foo } from 'modules';
 
 正是因为`export default`命令其实只是输出一个叫做`default`的变量，所以它后面不能跟变量声明语句。
 
+
+
+x 3 
+
+
+
+16    
+
+
+
+2  3 3
+
+
+
+2^3  2^2  2^1  2^0     =         16
+
+  x     *x *x  2  =x
+
+obj = {1:''}
+
+obj.1 = ''
+
+obj[''] = 1//得到key
