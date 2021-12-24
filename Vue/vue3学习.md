@@ -1,5 +1,13 @@
 ### vue3学习
 
+下午任务  
+
+1.缓存高度位置 keep-live
+
+2.管理store
+
+3. 动画 transition
+
 vue-cli创建vue项目
 
 ```
@@ -311,6 +319,24 @@ store.dispach.('')//actions方法使用
 #### dom操作
 
 需要通过ref来定义
+
+```
+<van-search
+    ref = "status"
+    v-model="text"
+    show-action
+    placeholder="请输入搜索关键词"
+    @search="onSearch"
+    @cancel="onCancel"
+    autofocus='true'
+  />
+  const status = ref(null)
+  onMounted(() => {
+      status.value.focus()
+    })
+```
+
+
 
 ```tsx
 <template>

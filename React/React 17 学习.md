@@ -197,6 +197,34 @@ func();
 
 https://github.com/febobo/web-interview/issues/189
 
+### 兄弟组件传递信息
+
+父组件作为中间层实现数据的互通
+
+```react
+class Parent extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {count: 0}
+  }
+  setCount = () => {
+    this.setState({count: this.state.count + 1})
+  }
+  render() {
+    return (
+      <div>
+        <SiblingA
+          count={this.state.count}
+        />
+        <SiblingB
+          onClick={this.setCount}
+        />
+      </div>
+    );
+  }
+}
+```
+
 ### 父组件向后代组件传递
 
 父组件向后代组件传递数据是一件最普通的事情，就像全局数据一样
@@ -415,33 +443,63 @@ const result = add(1)(2)(3)
 
 ## 高阶组件
 
-高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。
+https://vue3js.cn/interview/React/High%20order%20components.html#%E4%BA%8C%E3%80%81%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99   查看
+
+高阶组件（HOC）是 React 中用于**复用组件逻辑的一种高级技巧**。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。
 
 一个函数内部返回一个新的函数，内部采用闭包的写法
 
 具体而言，**高阶组件是参数为组件，返回值为新组件的函数**
 
+需要满足以下**条件**之一
+
+- 接受一个或多个函数作为输入
+- 输出一个函数
+
+使用约定：
+
+- props 保持一致
+
+- 你不能在函数式（无状态）组件上使用 ref 属性，因为它没有实例
+
+- 不要以任何方式改变原始组件 WrappedComponent
+
+- 透传不相关 props 属性给被包裹的组件 WrappedComponent
+
+- 不要再 render() 方法中使用高阶组件
+
+- 使用 compose 组合高阶组件
+
+- 包装显示名字以便于调试
+
+  获取存储的data并渲染
+
+```react
+import React, { Component } from 'react'
+
+function  withPersistentData (wrappedComponent){
+    return class extends Component{
+        componentDidMounet(){
+            let data = localStorage.getItem('data')
+            this.setState({data})
+        }
+        render(){
+            return <WrappedCompontent data={this.state.data} {this.props}></WrappedCompontent>
+        }
+    }
+    
+}
+
+class MyComponent2 extends Component{
+    render(){
+        return <div>{this.props.data}</div>
+    }
+}
+const MyComponentWithPersistentData = withPersistentData(MyComponent2)
+//调用 MyComponentWithPersistentData 就可以了
+```
 
 
-
-
-**todolist案例学习**
-
-1.拆分组件  实现静态组件
-
-2.动态初始化列表，如何确定将数据放在哪个组件的State？
-
-某个组件使用：放在其自身的state中
-
-某些组件的使用：放在他们共同的父组件state中 （官方称作状态提示）
-
-3.父子通信
-
-父子 通过props传递
-
-子父 通过props传递 要求父提前给子传递一个函数
-
-状态在哪 操作状态的方法就在哪
 
 ## refs使用
 
@@ -626,6 +684,15 @@ module.exports = withCss({})
 
 ## react-router 
 
+```
+// 安装
+npm install --save react-router-dom
+```
+
+
+
+
+
 BOM中的history（hashhistory(类似锚点跳转)  bowerhistory）
 
 为什么路由跳转的不是xxx.html 因为history（历史记录）机制
@@ -711,15 +778,19 @@ componentDidMount(){
 
   [a,usea]  =useState() 定义变量 方法
 
-usea(a+1)
+usea(a+1) 异步操作
 
+如果想查看的话
 
+useEffect(()=>{
 
+console.log(a)
 
+})
 
 ### useEffect
 
-`useEffect` 就是一个 Effect Hook，给函数组件增加了操作副作用(数据获取、订阅或者手动修改过 DOM称为**副作用**)的能力。
+`useEffect` 就是一个 Effect Hook，给函数组件增加了操作副作用(**数据获取、订阅或者手动修改过 DOM**称为**副作用**)的能力。
 
 它跟 class 组件中的 `componentDidMount`、`componentDidUpdate` 和 `componentWillUnmount` 具有相同的用途，只不过被合并成了一个 API。
 
@@ -1050,3 +1121,69 @@ function FriendStatus(props) {
 
 1. 优点：可以配置多个代理，可以灵活的控制请求是否走代理。
 2. 缺点：配置繁琐，前端请求资源时必须加前缀。
+
+## React - redux 使用
+
+简化react与redux流程（映射）
+
+1.方便react 与redux的沟通不需要再使用   getState()以及dispatch
+
+2.
+
+```react 
+//react-redux提供了两个方法
+//App.tsx 包裹 TodoList
+import  TodoList from './TodoList'
+//提供器  只要是被包裹的组件都可以获得store中的state
+import { Provider } from 'react-redux'
+
+export default class Ceshi extends Component {
+    render() {
+        return (
+            <Provider store={store}>
+            <TodoList/>
+        </Provider>
+        )
+    }
+}
+//TodoList.tsx
+//connect 连接器 （其实它就是一个方法），有了这个连接器就可以很容易的获得数据了。
+import { connect } from 'react-redux'
+
+class TodoList extends React.Component<TodoListProps, TodoListState> {
+    constructor(props: TodoListProps) {
+        super(props);
+        this.state = store.getState();
+        console.log(this.props)
+    }
+    render() { 
+        return (<div>dwxPang
+
+            <p>{this.props.inputValue}</p>
+            <input value={this.props.inputValue} onChange={this.props.changeState}></input>       
+        </div>  );
+    }
+}
+ 
+const stateToProps = (state)=>{
+    return {
+        inputValue: state.inputValue
+        state
+    }
+}
+//使用content 将dispatch通过porps传递给参数 代码清晰
+const dispatchToProps = (dispatch)=>{
+    return {
+        let changeState = (e)=>{
+            let action = {
+                type:'change_input',
+                value:e.target.value
+            }
+            dispatch(changeState)
+        }
+    }
+}
+export default connect(stateToProps,dispatchToProps)(TodoList)
+//connect 有两个参数第一个参数是获取state，第二个是(dispatch修改store)
+```
+

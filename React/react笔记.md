@@ -1528,8 +1528,8 @@ React 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案�
 2.view通过store.getState()获取到了store中保存的state挂载在了自己的状态上
 3.用户产生了操作，调用了actions 的方法
 4.actions的方法被调用，创建了带有标示性信息的action
-5.actions内部通过调用store.dispatch方法将标志性的action发送到了reducer中
-6.reducer接收到action并根据标识信息判断之后返回了新的state
+5.actions内部通过调用**store.dispatch**方法将标志性的action发送到了reducer中
+6.reducer接收到action并根据标识信息判断之后返回了新的**state**
 7.store的state被reducer更改为新state的时候，store.subscribe方法里的回调函数会执行，此时就可以通知view去重新获取state
 
 > 注意：flux、redux都不是必须和react搭配使用的，因为flux和redux是完整的架构，在学习react的时候，只是将react的组件作为redux中的视图层去使用了。
@@ -1602,15 +1602,53 @@ function reducer(state, action) {
 
 3. 组件通过调用store.getState方法来使用store中的数据
 
-4. 组件产生用户操作，调用actionCreator的方法创建一个action，利用store.dispatch方法传递给reducer
+4. 组件产生用户操作，**调用actionCreator的方法创建一个action**，利用store.dispatch方法传递给reducer
 
-5. reducer对action上的标示性信息做出判断后对新状态进行处理，然后返回新状态，这个时候store的数据就会发生改变    reducer返回什么状态，store.getState就可以获取什么状态
+   store只是一个仓库，并没有管理能力，会把接受到的action转发给reducer
 
-6. 我们可以在组件中，利用store.subscribe方法去订阅数据的变化，也就是可以传入一个函数，当数据变化的时候，传入的函数会执行，在这个函数中让组件去获取最新的状态
+   ```react
+   changeValue(e){
+       const action ={
+           type:'changevalue',
+           value:'e.target.value'
+       }
+       store.dispatch(action)
+   }
+   ```
 
+   
 
+5. reducer**对action上的标示性信息做出判断后对新状态进行处理**，然后返回新状态，这个时候store的数据就会发生改变    reducer返回什么状态，store.getState就可以获取什么状态
 
-步骤：
+   ```react
+   export default (state = defaultState,action)=>{  
+   if(action.type === 'changeInput'){
+       let newState = JSON.parse(JSON.stringify(state)); //需要使用深拷贝 
+       newState.inputValue = action.value;
+       return newState;
+       return state //返回给store
+       }
+   }
+   
+   ```
+
+   
+
+6. 我们可以在组件中，**利用store.subscribe方法去订阅数据的变化**，也就是可以传入一个函数，当数据变化的时候，传入的函数会执行，在这个函数中让组件去获取最新的状态
+
+```react
+constructor(props){
+    this.state = store.getState()
+    store.subscribe(this.storeChange) //订阅Redux的状态 发生改变触发
+}
+
+this.storeChange=()=>{  //注意使用箭头函数 this转向
+    this.setState(store.getState())
+}
+
+```
+
+步骤(不看即可)
 
 	1. src/store/index.js
 

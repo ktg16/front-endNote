@@ -20,12 +20,6 @@ ant desgin Pro
 
 
 
-
-
-
-
-
-
 ## package.json （配置）
 
 moment  时间格式化

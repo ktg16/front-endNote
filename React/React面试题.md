@@ -23,3 +23,9 @@ react16 通过babel-loader转译后 变为React.createElement
 react17
 
 ![image-20210608161322447](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210608161322447.png)
+
+1.说一下对React的理解  及特性？
+
+React是用于构建用户的JavaScript库 主要作用于ui层
+
+开发者不再需要关心界面时如何渲染的，只要关心数据的生成和传递，这大大提高的开发者的开发效率，节省了开发时间
