@@ -4,6 +4,16 @@ ps：本文有链接，翻版的永不如官方的解释清楚 。（如有不�
 
 设置个代理 （中间人与浏览器同源、没有ajax引擎）
 
+浏览器中的JavaScript有 Js核心语法、 WebApi
+
+
+
+浏览器运行环境(代码正常运行所需的必要环境)
+
+1.各浏览器存在不同的引擎(谷歌V8)来解析和执行js代码
+
+2.内置webApi是由运行环境提供的特殊接口  只能在所属环境中被调用
+
 # JavaScript 数据类型和数据结构
 
 ## [动态类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures#动态类型)
