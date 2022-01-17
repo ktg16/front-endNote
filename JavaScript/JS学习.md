@@ -269,7 +269,7 @@ arr.findindex(110) // -1 数组中没有该值
 
 
 
-```
+```js
 function union(){
  return 123456
 }
@@ -279,10 +279,11 @@ module.exports = union  //暴露union函数  union.js
 
 const union = require('./union.js') // 引入
 console.log(union())
+//../router_handler/userinfo
+exports.getUserInfo = (req, res) => { res.send('ok') }
 
-动态调用
+const userinfo_handler = require('../router_handler/userinfo')
 
-module
 ```
 
 ## export与import

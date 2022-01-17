@@ -81,7 +81,7 @@ router.post('/reguster',user_handler.regUser)
 
 2.1.新建ev_users表
 
-2.2安装mysql模块并配置
+### 2.2安装mysql模块并配置
 
 npm i mysql@2.18.1
 
@@ -235,6 +235,106 @@ const sql = 'select * from ev_users where username=?'
 db.query(sql,userInfo.usename,function(err,results){
 	if(err)
 	if(results.length!==1)
-	//判断输入的密码是否正确
+	//2.6.3判断输入的密码是否正确
 })
 ```
+
+2.6.3判断用户输入的密码是否正确
+
+```
+// 拿着用户输入的密码,和数据库中存储的密码进行对比 c
+onst compareResult = bcrypt.compareSync(userinfo.password, results[0].password) 
+// 如果对比的结果等于 false, 则证明用户输入的密码错误 
+if (!compareResult) { return res.cc('登录失败！') }
+// TODO：登录成功，生成 Token 字符串
+```
+
+2.6.4生成JWT的Token字符串
+
+```
+npm i jsonwebtoken@8.5.1 //安装生成Token字符串的包
+```
+
+2.7配置解析 Token中间件
+
+```
+npm i express-jwt@5.3.3  //安装解析Token的中间件
+```
+
+## 3.个人中心
+
+3.1获取用户基本信息
+
+3.1.0 获取基本信息实现步骤
+
+	1. 初始化路由模块(基础接口)
+	2. 路由处理函数  通过前端传递过来的数据进行查表
+	3. 获取用户的基本信息
+
+3.1.1 初始化路由模块
+
+​	1.创建路由模块 新建文件 /router/userinfo.js 路由模块
+
+```
+const express = require('express')
+
+const router = express.Router()
+//get 请求
+router.get('/userInfo',(req,res)=>{
+	res.send('ok')
+})
+
+//暴露出去
+module.exports = router
+```
+
+2.app.js 引入
+
+3.1.2初始化路由处理函数
+
+3.1.3获取用户基本信息
+
+与前面类型 写sql语句 处理数据 判断
+
+3.2更新用户数据
+
+​	步骤
+
+​	1.实现路由
+
+​	2.验证表单数据 （依据joi）
+
+​	3.实现更新用户基本信息的功能
+
+
+
+```
+expressJoi(update_userinfo_schema)//使用验证规则对象
+router.post('/userinfo', expressJoi(update_userinfo_schema), userinfo_handler.updateUserInfo)
+```
+
+3.3重置密码
+
+​	1.定义路由 处理函数
+
+​	2.验证表单数据
+
+​	3.重置密码
+
+​		1.查询密码是否存在
+
+```js
+const sql = `select * from ev_users' where id=?`
+
+db.query(sql , req.user.id ,(err,result)=>{
+xxx
+	//判断密码是否正确
+	const compareResult = bcrypt.compareSync(req.body.oldPwd, results[0].password) 
+	if (!compareResult) return res.cc('原密码错误！')
+	//设置新密码
+})
+```
+
+3.4更新用户头像
+
+3.5更新文章数据

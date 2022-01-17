@@ -574,6 +574,8 @@ UNSAFE_componentWillReceiveProps
 
 2.shouldComponentUpdate() 组件更新（return false就停止了）
 
+作用:（进行性能优化）检查props和state中所有字段，以此来决定组件是否需要更新
+
 3.render 挂载
 
 4.getSnapshotBeforeUpdate()  更新前 获取Snapshot(获取更新前的数据 return出来 传给componentDidUpdate)    更新之前把数据保留下来传给**componentDidUpdate()**
