@@ -63,14 +63,14 @@ return(
 )
 
 
-//类子组件
-类名.contextType = Usercontext
+//1.类子组件
+类名.contextType = ThemeContext或者 static contextType = MyContext;
 
 
 render(){
 const {themeColor} = this.context
 
-//函数子组件
+//2.函数子组件
 还需要引入 ThemeContext
 const ctx = useContext(ThemeContext)
 
@@ -79,7 +79,7 @@ return(
 )
 }
 
-Consumer组件 //消费者
+3.Consumer组件 //消费者
 
 <PriceContext.Consumer>
 {
@@ -90,10 +90,29 @@ Consumer组件 //消费者
 
 ```
 
-高阶组件-hoc
+存在一个替换方案
 
+https://react.docschina.org/docs/context.html
 
+```
+function Page(props) {
+  const user = props.user;
+  const content = <Feed user={user} />;
+  const topBar = (
+    <NavigationBar>
+      <Link href={user.permalink}>
+        <Avatar user={user} size={props.avatarSize} />
+      </Link>
+    </NavigationBar>
+  );
+  return (
+    <PageLayout
+      topBar={topBar}
+      content={content}
+    />
+  );
+}
+```
 
+有的时候在组件树中很多不同层级的组件需要访问同样的一批数据。Context 能让你将这些数据向组件树下所有的组件进行“广播”，所有的组件都能访问到这些数据，也能访问到后续的数据更新。使用 context 的通用的场景包括管理当前的 locale，theme，或者一些缓存数据，这比替代方案要简单的多。
 
-
-因为无状态组件其实就是一个函数（方法）,所以它的性能也比普通的`React`组件要好。

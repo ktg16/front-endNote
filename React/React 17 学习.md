@@ -1,4 +1,4 @@
-React 17 学习
+   React 17 学习
 
 
 
@@ -7,6 +7,14 @@ React 17 学习
 React 会将以小写字母开头的组件视为原生 DOM 标签。例如，`<div />` 代表 HTML 的 div 标签，而 `<Welcome />` 则代表一个组件，并且需在作用域内使用 `Welcome`。
 
 setState修改对象状态
+
+## react内联样式写法
+
+```
+<div style={{backgroundColor:context.background,border:'1px solid red'}} > </div>
+```
+
+
 
 ## 1.什么是纯函数？
 
@@ -504,6 +512,7 @@ const MyComponentWithPersistentData = withPersistentData(MyComponent2)
 ## refs使用
 
 ```
+// 不能用了过时了 this.refs被删除
 consturctor(props){
 	this.myRef  =  react.createRef()//创建
 }
@@ -518,9 +527,21 @@ render (){
 		<input refs='myRef'/>
 	)
 }
+//官网版本
+consturctor(props){
+	this.myRef = React.createRef()
+}
+componentDidMount(){
+	this.myRef.current.focus() //通过current执行
+}
+render (){
+	return(
+		<input ref = {this.myRef}/>
+	) 
+}
 
 ref属性用于原生HTML元素上，如果ref设置的组件为一个类组件的时候，ref对象接收到的是组件的挂载实例
-
+在函数组件中可以使用useRef
 注意的是，不能在函数组件上使用ref属性，因为他们并没有实例
 主要用于：
 对Dom元素的焦点控制、内容选择、控制
@@ -552,9 +573,28 @@ ReactDom.unmountComponentAtNode(document.getElementById('test'))//卸载
 
 static getDerivedStateFromProps() 
 
-1.  静态方法  不能给实例用 （不能使用.调用）
+1. 静态方法  不能给实例用 （不能使用.调用）
+
 2. 返回状态对象/null（返回的状态就无法改变了）
+
 3. 能收到props return props（直接改变state,状态都听props）  **state值取决于props**
+
+   
+
+4.  ```js
+      //使用方法
+    static getDerivedStateFromProps(nextProps, prevState) {
+        const {type} = nextProps;
+        // 当传入的type发生变化的时候，更新state
+        if (type !== prevState.type) {
+            return {
+                type,
+            };
+        }
+        // 否则，对于state不进行任何操作
+        return null;
+    }
+    ```
 
 3.render 提交
 
@@ -573,6 +613,12 @@ UNSAFE_componentWillReceiveProps
 1.static getDerivedStateFromProps(nextProps, prevState) 通过props派生state   直接通过props修改 State
 
 2.shouldComponentUpdate() 组件更新（return false就停止了）
+
+这个方法用来判断是否需要调用 render 方法重新描绘 
+
+dom。因为 dom 的描绘非常消耗性能，如果我们能在 shouldComponentUpdate 
+
+方法中能够写出更优化的 dom diff 算法（判断这个是否必要更新），可以极大的提高性能。
 
 作用:（进行性能优化）检查props和state中所有字段，以此来决定组件是否需要更新
 
@@ -1189,3 +1235,4 @@ export default connect(stateToProps,dispatchToProps)(TodoList)
 //connect 有两个参数第一个参数是获取state，第二个是(dispatch修改store)
 ```
 
+状态管理工具 redux mobx
