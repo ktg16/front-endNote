@@ -838,6 +838,8 @@ console.log(a)
 
 ### useEffect
 
+https://segmentfault.com/a/1190000022850641#item-4
+
 `useEffect` 就是一个 Effect Hook，给函数组件增加了操作副作用(**数据获取、订阅或者手动修改过 DOM**称为**副作用**)的能力。
 
 它跟 class 组件中的 `componentDidMount`、`componentDidUpdate` 和 `componentWillUnmount` 具有相同的用途，只不过被合并成了一个 API。

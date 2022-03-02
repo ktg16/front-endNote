@@ -251,7 +251,7 @@ return true //向外传播
 处理异步操作
 ```
 
-this.$nextTick(()=>{})//vue2中 使用其预加载
+this.$nextTick(()=>{})//vue2中 使用操作DOM//执行下一个dom
 
 ```vue
 需要写这个接受一下 
