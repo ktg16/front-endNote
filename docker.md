@@ -9,3 +9,5 @@
 ​	**2.在windows10上开启Hyper-V**
 
 ​	**3.设置Hyper-V角色和容器**
+
+docker就是容器 搭建在服务器上的

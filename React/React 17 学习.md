@@ -201,6 +201,44 @@ func();
 
 # 高级指引
 
+## 无状态组件
+
+https://juejin.cn/post/6844903493816303624
+
+```javascript
+// 有状态组件
+import React, { Component, PropTypes } from 'react';
+
+export default class CusImg extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className={this.props.style}>
+        <img src={this.props.imgurl}/>
+        <text className={this.props.textStyle}>{this.props.text}</text>
+    </div>);
+  }
+}
+
+CusImg.propTypes = {
+};
+
+// 转为无状态组件
+const CusImg = (props)=>(
+  <div className={props.style}>
+    <img src={props.imgurl}/>
+    <text className={props.textStyle}>{props.text}</text>
+</div>
+);
+
+module.exports = CusImg
+```
+
+
+
 ## React组件之间如何通信
 
 https://github.com/febobo/web-interview/issues/189
@@ -838,8 +876,6 @@ console.log(a)
 
 ### useEffect
 
-https://segmentfault.com/a/1190000022850641#item-4
-
 `useEffect` 就是一个 Effect Hook，给函数组件增加了操作副作用(**数据获取、订阅或者手动修改过 DOM**称为**副作用**)的能力。
 
 它跟 class 组件中的 `componentDidMount`、`componentDidUpdate` 和 `componentWillUnmount` 具有相同的用途，只不过被合并成了一个 API。
@@ -1009,9 +1045,9 @@ const Color =(props)=>{
 
 #### useMemo缓存变量 useCallback缓存函数
 
-useMemo 优化ReactHooks程序性能
+**useMemo 优化ReactHooks程序性能，可以减少不必要的渲染类似（pureComponent，sholudComponentUpdate）**
 
-useMemo有什么用  函数式组件失去了shouldComponentUpdate(更新之前)
+useMemo有什么用  函数式组件失去了shouldComponentUpdate(更新之前)也类似computed把变量缓存起来
 
 **每一次修改state都会调用所有的逻辑**，带来巨大性能问题（使用**useMemo，useCallBac**k解决）
 
@@ -1024,7 +1060,7 @@ function ChildComponent({name,children}){
         console.log('她来了，她来了。小红向我们走来了')
     }
 
-    const actionXiaohong = useMemo(()=>changeXiaohong(name),[name]) 
+    const actionXiaohong = useMemo(()=>changeXiaohong(name),[name])  //第二个参数是依赖项  只有依赖项发生变化才会重新渲染
     // 根据依赖项name来判断是否调用changeXiaohong方法
     //如果没有提供依赖项数组，useMemo 在每次渲染时都会计算新的值。
     return (
@@ -1051,7 +1087,19 @@ const memoizedCallback = useCallback(
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
+useCallback必须配合 react.memo pureComponent，否则不但不会提升性能，还有可能降低性能。
+
 把**内联回调函数**及**依赖项数组**作为参数传入 useCallback，它将返回**该回调函数**的 **memoized 版本**，该回调函数仅在**某个依赖项改变**时才会更新。当你把回调函数传递给经过优化的并使用引用相等性去避免非必要渲染（例如 shouldComponentUpdate）的子组件时，它将非常有用。
+
+#### useLayoutEffect 
+
+空数组作为第二个参数  仅在安装组件时执行一次提供的回调
+
+其函数签名与 useEffect 相同，但它会在所有的 DOM 变更之后同步调用 effect。可以使用它来读取 DOM 布局并同步触发重渲染。在浏览器执行绘制之前，useLayoutEffect 内部的更新计划将被同步刷新
+
+
+
+
 
 ### Hook使用规则
 

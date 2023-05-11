@@ -38,6 +38,6 @@ React是用于构建用户的JavaScript库 主要作用于ui层
 
 Super（）调用父类的构造方法，有 super，组件才有自己的 this，在组件全局中都可 
 
-以使用 this，如果只是 constructor 而不执行 super，之后的 this 都是错的，super 
+以使用 this,（当继承时使用super可以得到props）。如果只是 constructor 而不执行 super，之后的 this 都是错的，super 
 
 继承父组件的 this

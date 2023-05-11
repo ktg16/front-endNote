@@ -286,7 +286,8 @@ body {
 这是不可以的，扩展必须在最后 : pre:hover:extend(div pre).nth-child(odd)。
 
 如果一个规则集包含多个选择器，所有选择器都可以使用extend关键字。
-
+#### 4.  @import 
+使用@import 引入less
 
 
 ### 运算（不常用）

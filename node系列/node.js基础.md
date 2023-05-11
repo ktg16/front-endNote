@@ -291,9 +291,11 @@ https.get('https//www.meizu.com',(result)=>{
 
 [node基础](https://lurongtao.gitee.io/felixbooks-gp19-node.js/basics/01-Node.js%E5%9F%BA%E7%A1%80.html) 
 
-npm xx -s  装在dependencies 生产
+npm xx -s  装在dependencies 生产  npm xx --save（区别不大）与 npm xx --save-dev（有个标记 标记位置不一样）
 
-npm xx -D   就装在dev（开发）环境中
+npm xx -g 全局安装  
+
+npm xx -D   就装在dev（上线 生产）环境中
 
 ## Events
 
