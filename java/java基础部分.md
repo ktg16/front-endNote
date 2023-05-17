@@ -70,7 +70,7 @@ dos： disl operating Syetem
 
 2.引用数据类型
 
-类 class 接口interfance 数组[]
+类 class 接口interfance 数组[] 自定义的类也属于基本类型
 
 java的整型常量具体值默认为 int型 声明long型常量须后加‘l’或‘L’
 
@@ -269,6 +269,8 @@ java 允许将同一个类中多个同名同功能但参数个数不同的方法
 3) 在创建对象时，系统会自动的调用该类的构造器完成对象的初始化。 
 
 4）可以默认构造器
+
+一个类中可以有多个构造器
 
 ```java
 Person p1 = new Person("smith", 80); // 创建对象
