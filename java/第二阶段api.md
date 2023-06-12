@@ -57,30 +57,98 @@ List<Integer> asList = Arrays.asList(2,3,4,5,6,1);
 
 ### System类
 
-
-
 ```
 1.System.exit 退出当前程序
 2.System.arratcopy //适合底层使用
+arratcopy(源数组，源数组起始位置，目标数组，目标数组起始位置，要复制数组元素数量)
+3.System.currentTimeMillens:返回当前时间距离1970-1-1毫秒数
+4.gc：运行垃圾回收机制 System.gc()
+
 ```
 
+### BigInteger 和 BigDecimal 类
 
+BigInteger适合保存比较大的整型(long 不否用的时候)
 
+BigDecimal 适合保存精度更高 浮点数
 
+```
+1.add 加
+bigInteger.add(bigInteger2);
+2.subtract 减
+3.multiply 乘
+4.divide 除
+```
 
+### 日期类
 
+```
+1.Date
+	Date d1 = new Date() 获取当前系统时间
+	
+2.SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh:mm:ss E")	
+String format = sdf.fotmat(d1);//format 将提起转换成指定格式的字符串
+//1. 可以把一个格式化的 String 转成对应的 Date
+//2. 得到 Date 仍然在输出时，还是按照国外的形式，如果希望指定格式输出，需要转换
+//3. 在把 String -> Date ， 使用的 sdf 格式需要和你给的 String 的格式一样，否则会抛出转换异常
 
+String s = "1996 年 01 月 01 日 10:20:30 星期一";
+Date parse = sdf.parse(s);
+```
 
+https://www.163.com/dy/article/I6Q1DNLI0553CV3H.html
 
+#### 第二代日期类Calendar
 
+//1. Calendar 是一个抽象类， 并且构造器是 private 
 
+//2. 可以通过 getInstance() 来获取实例
+ //3. 提供大量的方法和字段提供给程序员
 
+//4. Calendar 没有提供对应的格式化的类，因此需要程序员自己组合来输出(灵活)
+ //5. 如果我们需要按照 24 小时进制来获取时间， Calendar.HOUR ==改成=> Calendar.HOUR_OF_DAY
 
+```
+				System.out.println(c.get(Calendar.YEAR));
+        System.out.println(c.get(Calendar.MONTH + 1));
+        System.out.println( c.get(Calendar.DAY_OF_MONTH));
+        System.out.println(c.get(Calendar.HOUR));
+        System.out.println(c.get(Calendar.MINUTE));
+        System.out.println(c.get(Calendar.SECOND));
+```
 
+#### 第三代日期类LocalDate
 
+```
 
+LocalDateTime ldt = LocalDateTime.now(); //LocalDate.now();//LocalTime.now()
+//格式化代码
+DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); String format = dateTimeFormatter.format(ldt);
+        System.out.println("格式化的日期=" + format);
+        System.out.println("年=" + ldt.getYear());
+        System.out.println("月=" + ldt.getMonth());
+        System.out.println("月=" + ldt.getMonthValue());
+        System.out.println("日=" + ldt.getDayOfMonth());
+        System.out.println("时=" + ldt.getHour());
+        System.out.println("分=" + ldt.getMinute());
+        
+   LocalDate now = LocalDate.now(); //可以获取年月日    
+   LocalTime now = LocalTime.now();//时间
+   
+   // plus和minus 可以对时间进行加减
+   
+   LocalDateTime a = ldt.plusDays(100)
+   
+   LocalDateTime a = ldt.plusYears(100)
+   localDateTime b = ldt.minusMinutes(3456)     
+        
+```
 
+DateTimeFormatter  格式日期类
 
+DateTimeFormatter dtf = DateTimeFormatter.ofPatten("")
+
+String strDate = def.format(Idt)
 
 
 
