@@ -298,13 +298,157 @@ System.out.println("o=" + o); }
 }
 ```
 
-
+#### ArrayList
 
 ArrayList不带有synchronized 不支持线程同步 多线程不建议使用 
 
+![]()
+
+![image-20230614095753336](/Users/duwenxuan/Library/Application Support/typora-user-images/image-20230614095753336.png)
+
+源码分析请查看附录 
+
+
+
+#### Vetor
+
 Vetor类带有synchronized
 
+![image-20230614102948210](/Users/duwenxuan/Library/Application Support/typora-user-images/image-20230614102948210.png)
 
+#### LinkedList
+
+1.LinkedList底层实现了双向链表和双端队列特点
+
+2.可以添加任意元素（元素重复） 包括null
+
+3.线程不安全
+
+LinkedList的底层操作机制
+
+![image-20230614084934951](/Users/duwenxuan/Library/Application Support/typora-user-images/image-20230614084934951.png)
+
+```
+//模拟一个简单的双向链表
+Node jack = new Node("jack"); 
+Node tom = new Node("tom"); 
+Node hsp = new Node("老韩");
+//连接三个结点，形成双向链表 //jack -> tom -> hsp
+jack.next = tom;
+tom.next = hsp;
+//hsp -> tom -> jack 
+hsp.pre = tom; 
+tom.pre = jack;
+ while (true){
+            if(first == null){
+                break;
+            }
+            System.out.println(first);
+            first = first.next;
+        }
+        while (true){
+            if(last  == null){
+                break;
+            }
+            System.out.println(last);
+            last = last.pre;
+        }
+```
+
+LinkedList增删改查
+
+```
+
+//修改某个结点对象
+linkedList.add(1);
+linkedList.remove(2)
+linkedList.set(1, 999);
+linkedList.get(1)
+System.out.println("===LinkeList 遍历迭代器===="); Iterator iterator = linkedList.iterator();
+while (iterator.hasNext()) {
+Object next = iterator.next(); System.out.println("next=" + next);
+}
+System.out.println("===LinkeList 遍历增强 for===="); 
+for (Object o1 : linkedList) {
+System.out.println("o1=" + o1); }
+System.out.println("===LinkeList 遍历普通 for===="); 
+for (int i = 0; i < linkedList.size(); i++) {
+System.out.println(linkedList.get(i)); }
+```
+
+
+
+#### 实际开发中如何选择List
+
+![image-20230613170734988](/Users/duwenxuan/Library/Application Support/typora-user-images/image-20230613170734988.png)
+
+如何选择
+
+1.改查。ArrayList
+
+2.增删  LinkedList
+
+3.大部分是查询。选择ArrayList  
+
+4.一个模块使用的是ArrayList。另一个模块是LinkedList
+
+
+
+#### Set
+
+特点
+
+```
+//1. 以 Set 接口的实现类 HashSet 来讲解 Set 接口的方法
+//2. set 接口的实现类的对象(Set 接口对象), 不能存放重复的元素, 可以添加一个 null 
+//3. set 接口对象存放数据是无序(即添加的顺序和取出的顺序不一致)  没有索引
+//4. 注意:取出的顺序的顺序虽然不是添加的顺序，但是他的固定.
+Set  set = new HashSet();
+
+        set.add("123");
+        set.add(123);
+        set.add(null);
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println("0:"+set);
+        }
+        //遍历
+        for(Object o:set){
+            System.out.println(o);
+        }
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            Object obj = iterator.next();
+            System.out.println("obj=" + obj);
+        }
+        set.size();
+    }
+
+```
+
+Set接口类 HashSet
+
+上面基本讲解了HashSet特点
+
+Hash实际上是HashMap
+
+有源码部分建议回头来看
+
+```
+使用Set需要使用重写 equals和 hashCode代码
+ @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return sal == employee.sal && Objects.equals(name, employee.name) && Objects.equals(birthday, employee.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, sal, birthday);
+    }
+```
 
 电影无问西东有一句台词，如果提前知道你将面对的人生，你是否还有勇气重来一遍？
 

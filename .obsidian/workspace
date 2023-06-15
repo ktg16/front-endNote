@@ -1,0 +1,113 @@
+{
+  "main": {
+    "id": "7e9090806b9babb6",
+    "type": "split",
+    "children": [
+      {
+        "id": "92e345b366e32a77",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Ahttp的学习.md",
+            "mode": "source",
+            "source": true
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3b0e70bec522ba12",
+    "type": "split",
+    "children": [
+      {
+        "id": "ee5eb2562ee7e856",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "20918729973c78b2",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "f1f69d30d57cde19",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "https://sfc.vuejs.org/#eNqNVNFu2yAU/RXkPqSVYrtdpz2wpFrf9riHvdXTRDBOaG1AgNNWUf59B3BcZ13WxFLEvfdwOOfa3F12b0yx7UVGs4XjVhpPnPC9uauU7Iy2nnzXnSCN1R2ZFWUIAnw2ln9o591Yj9Ex4N7yjdy+UQzxMWhHrGjIfgClEqkU18p5wntrhfI/2YosA+5yFmTMrip1QHi2cqjtsCnqnYdF1BJXw5GV2ldqUSabMIjAi860zAtEhCxquSW8Zc4tq6wWna6ymEdl1XuvsSEE+G3zRluALn/Pw9lXRKqoocpGCH0Sr0AgO00e2B9mKOSJdTaHfcY9FNIjr8tlICX7XxOGb7yV/AkMR02ZnjJIJmS3S9thOnoo03HBuEfINVqvQEGoDJKC/oc3Vhw69iLS3y3KcUtqV4l+YbUoJ11E6PxrG5ZFaGF6J41WPm9YJ9tXShxTLnfCyuZrqK20rYWl5Ma8EKdbWZMLIcSklFtWy95R8sm8xLRhdS3VGolr7LnFX0x3zK6lyr02IBPdNLfScN5R8vmA7XE+NLSCe0oUPMWs3grbtPo5f6GE9V4jiebBydvLSn5GBV8g4OZAOsiFgLwVjR91376vW7nenAIctYJzHkt4MU6jZLRUXtgEZ/xpbXWvakoumuvw/Mt0DrppPp49pmFwYo9uQg+SySN6cR2ed/gifbdnbBggpx2OPR36me5q/JayeZbmRN4xUzw6rTCuIl81FHDzaDoh5DA/QlxlG++No2XpGh7mzaMrtF2XWBW2V15ilgnX5Surn/E9gLjK4rwYOEok0Y0cNwKihf0f51/Qd7yBFo72sHKYoWHknp4/6c4lNXEEj5fvxN0D8zh9z6dO4/sM7snYPp/9MPs/5N//ARljNdU=",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5819af823596be4b",
+    "type": "split",
+    "children": [
+      {
+        "id": "57378e166aac2670",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "beebfced5ea552e0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Ahttp的学习.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a9414c3a67cc3a06",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Ahttp的学习.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 352.5
+  },
+  "active": "92e345b366e32a77",
+  "lastOpenFiles": [
+    "Vue/vue3学习.md",
+    "杜为CTO梦想所奋斗/日记 每天干了啥.md",
+    "JavaScript/同步与异步.md",
+    "Vue/面试题.md",
+    "面试题系列/前端比较牛的技术点.md",
+    "Vue/面试题汇总1.md",
+    "面试准备/个人被面到的题--面试真题.md",
+    "面试题系列/vue.md",
+    "面试题系列/前端基础(八股文系列).md",
+    "面试准备/vue的进阶面试.md"
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "main": {
+    "id": "7e9090806b9babb6",
+    "type": "split",
+    "children": [
+      {
+        "id": "b34af0e3aa7ae928",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6b302f0a5416e231",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "JavaScript/A-js、Es6系统学习(红宝书笔记).md",
+                "mode": "source",
+                "source": true
+              }
+            }
+          },
+          {
+            "id": "8c7bc3166660778c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "杂学笔记.md",
+                "mode": "source",
+                "source": true
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3b0e70bec522ba12",
+    "type": "split",
+    "children": [
+      {
+        "id": "ee5eb2562ee7e856",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "20918729973c78b2",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f1f69d30d57cde19",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "回调函数",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5819af823596be4b",
+    "type": "split",
+    "children": [
+      {
+        "id": "57378e166aac2670",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "beebfced5ea552e0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "杂学笔记.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a9414c3a67cc3a06",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "杂学笔记.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 352.5
+  },
+  "active": "8c7bc3166660778c",
+  "lastOpenFiles": [
+    "Vue/面试题.md",
+    "JavaScript/JS学习.md",
+    "JavaScript/A-js、Es6系统学习(红宝书笔记).md",
+    "Vue/面试题汇总1.md",
+    "node系列/项目实操express.md",
+    "ev_api_server.md",
+    "node系列/项目实操.md",
+    "Vue/vue3学习.md",
+    "JavaScript/Es6面试题及部分语法.md",
+    "JavaScript/手写面试题.md"
+  ]
+}
