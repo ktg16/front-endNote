@@ -450,6 +450,189 @@ Hash实际上是HashMap
     }
 ```
 
+
+
+
+
+#### Map
+
+源码解析视频
+
+https://www.bilibili.com/video/BV1fh411y7R8/?p=532&spm_id_from=pageDriver&vd_source=75e113dec8efe1f136750d6e690b5075https://www.bilibili.com/video/BV1fh411y7R8/?p=532&spm_id_from=pageDriver&vd_source=75e113dec8efe1f136750d6e690b5075
+
+
+
+```
+//1. Map 与 Collection 并列存在。用于保存具有映射关系的数据:Key-Value(双列元素)
+//2. Map 中的 key 和 value 可以是任何引用类型的数据，会封装到 HashMap$Node 对象中 //3. Map 中的 key 不允许重复，原因和 HashSet 一样，前面分析过源码.
+//4. Map 中的 value 可以重复
+//5. Map 的 key 可以为 null, value 也可以为 null ，注意 key 为 null,只能有一个，value 为 null ,可以多个
+//6. 常用 String 类作为 Map 的 key
+//7. key 和 value 之间存在单向一对一关系，即通过指定的 key 总能找到对应的 value
+```
+
+```
+//map方法
+Map map = new HashMap();
+      1.  map.put("邓超","12345");
+        map.put("邓超",45);
+       2. map.remove("邓超");
+        map.put("孙俪",333);
+        map.put("hsp",333);
+			3.	map.get("邓超")
+        Object val =  map.get("鹿晗");
+        //获取元素个数
+        map.size();
+        //判断是否0
+        map.isEmpty();
+        //containsKey 查找键是否存在
+        map.containsKey("hsp");
+        // clear清除
+        map.clear();
+```
+
+map遍历方法
+
+```
+        //通过key获取val
+        Set keyset = map.keySet();
+        //增强for
+        for(Object o:keyset){
+            System.out.println(o+"-"+map.get(o));
+        }
+        //2.迭代器
+        Iterator iterator = keyset.iterator();
+
+        while (iterator.hasNext()){
+            Object key = iterator.next();
+            System.out.println(key+"-"+map.get(key));
+        }
+        // 把所有values取出
+        Collection values = map.values();
+        for(Object o :values){
+            System.out.println(o);
+        }
+        //迭代器取出value
+        Iterator iterator1 = values.iterator();
+        while (iterator1.hasNext()){
+            Object value = iterator1.next();
+            System.out.println(value);
+        }
+        //entrySet获取k-v
+        Set entrySet = map.entrySet();
+        for (Object set:entrySet){
+            Map.Entry m = (Map.Entry) set;
+            System.out.println(m);
+        }
+        while (iterator.hasNext()){
+// Map.entrySet() 这个方法返回的是一个Set<Map.Entry<K,V>>，Map.Entry 是Map中的一个接口，
+//他的用途是表示一个映射项（里面有Key和Value），而Set<Map.Entry<K,V>>表示一个映射项的Set。
+//Map.Entry里有相应的getKey和getValue方法，即JavaBean，让我们能够从一个项中取出Key和Value。
+            System.out.println(iterator.next()+"sss");
+            Map.Entry entry = (Map.Entry) iterator.next();
+            Emp emp = (Emp) entry.getValue();
+            if(emp.getSal() > 18000) {
+                System.out.println(emp); }
+        }
+```
+
+hashtable
+
+1.键和值都不能为null。
+
+2.使用方法与hashmap一致
+
+3.线程安全
+
+#### 集合的选择
+
+![image-20230619135427059](/Users/duwenxuan/Library/Application Support/typora-user-images/image-20230619135427059.png)
+
+treeMap。treeSet
+
+```
+TreeMap treeMap = new TreeMap(new Comparator() {//使用一个比较器
+  @Override
+  public int compare(Object o1, Object o2) {
+  //按照传入的 k(String) 的大小进行排序
+  //按照 K(String) 的长度大小排序
+  //return ((String) o2).compareTo((String) o1); 
+  return ((String) o2).length() - ((String) o1).length();
+} });
+```
+
+#### Collections工具类
+
+1.collections 是一个操作Set List map等集合的工具类
+
+2.存在一系列静态的方法对集合元素进行排序 查询 修改
+
+排序操作。均为static方法
+
+
+
+reverse(List) 反转List元素的顺序
+
+shuffle(List)对List集合元素进行随机排序
+
+sort。升序
+
+sort(List,Comparator): 根据指定Comparator产生的顺序对List集合元素怒进行排序
+
+swap(List,int,int) 将制定list集合中的i处元素和j处元素进行交换
+
+
+
+Collections.max(list)  返回给定集合中的最大元素
+
+max(list,Comparator)
+
+min(list) 返回最小元素
+
+
+
+Frequency(list,object)  返回指定集合中指定元素出现次数
+
+
+
+Copy(List dest,List src);   将内容复制到dest中
+
+ replaceAll(List list，Object oldVal，Object newVal)  使用新值替换List对象的所有旧值
+
+Collections.replaceAll(list, "tom", "汤姆");
+
+
+
+
+
+
+
+
+
+![image-20230619165246530](/Users/duwenxuan/Library/Application Support/typora-user-images/image-20230619165246530.png)
+
+泛型的好处
+
+1.编译时，检查添加元素的类型 提高安全性
+
+2.减少了类型转换的次数。提高效率
+
+3.不提示编译警告
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 电影无问西东有一句台词，如果提前知道你将面对的人生，你是否还有勇气重来一遍？
 
 我在很多地方引用过艾比克泰德的这句话，我们登上并非我们所选择的舞台，演出并非我们所选择的剧本
@@ -461,3 +644,16 @@ Hash实际上是HashMap
 堕落天使路西法这个魔鬼隐藏在每个人内心深处，凡动刀者，必死于刀下
 
 生活远比戏剧更荒诞与沉重，但荒诞不是让我们绝望，而是让我们重新滋生勇气与信心。
+
+证书
+
+https://www.sohu.com/a/573939453_120174355
+
+上线应用商店需要研究
+
+
+
+1、什么时候把程序跑起来，手机还给他。   ===》 这个原计划好像就是最近了
+2、什么时候上线应用商店。                        ===》 这个没计划，2个月或者明天以后再说？ 
+3、什么时候上线语音通话功能。                 ===》这个你看着编吧。。。
+4、什么时候上线设备功能。                        ===》 这个工作量好像不小，估计有个20来个页面的样子，主要还得调蓝牙
