@@ -508,6 +508,7 @@ map遍历方法
             System.out.println(key+"-"+map.get(key));
         }
         // 把所有values取出
+        // 有问题需要 取出
         Collection values = map.values();
         for(Object o :values){
             System.out.println(o);
@@ -589,11 +590,7 @@ max(list,Comparator)
 
 min(list) 返回最小元素
 
-
-
 Frequency(list,object)  返回指定集合中指定元素出现次数
-
-
 
 Copy(List dest,List src);   将内容复制到dest中
 
@@ -611,6 +608,8 @@ Collections.replaceAll(list, "tom", "汤姆");
 
 ![image-20230619165246530](/Users/duwenxuan/Library/Application Support/typora-user-images/image-20230619165246530.png)
 
+### 泛型
+
 泛型的好处
 
 1.编译时，检查添加元素的类型 提高安全性
@@ -618,6 +617,132 @@ Collections.replaceAll(list, "tom", "汤姆");
 2.减少了类型转换的次数。提高效率
 
 3.不提示编译警告
+
+
+
+```
+Cart<String> c = new Cart<String>("dwx");
+class Cart<E> {
+   private E name;
+
+    public Cart(E name) {
+        this.name = name;
+    }
+    public E f(){
+        return name;
+    }
+}
+```
+
+
+
+
+
+```
+//1.给泛型指向数据类型是，要求是引用类型，不能是基本数据类型
+
+	List<Integer> list = new ArrayList<Integer>(); //OK
+//List<int> list2 = new ArrayList<int>();//错误
+//2. 说明
+
+//因为 E 指定了 A 类型, 构造器传入了 new A() 
+//在给泛型指定具体类型后，可以传入该类型或者其子类类型
+//3. 泛型的使用形式
+ ArrayList<Integer> list1 = new ArrayList<Integer>(); 
+ List<Integer> list2 = new ArrayList<Integer>();
+ 可以简写
+ArrayList<Integer> list3 = new ArrayList<>();
+List<Integer> list4 = new ArrayList<>(); 
+ArrayList<Pig> pigs = new ArrayList<>();
+//4. 如果是这样写 泛型默认是 Object
+ArrayList arrayList = new ArrayList();
+```
+
+
+
+#### 自定义泛型类
+
+```
+//1. Tiger 后面泛型，所以我们把 Tiger 就称为自定义泛型类 
+//2, T, R, M 泛型的标识符, 一般是单个大写字母
+//3. 泛型标识符可以有多个.
+//4. 普通成员可以使用泛型 (属性、方法)
+//5. 使用泛型的数组，不能初始化  在new的时候不能确定T的类型无法确定T的类型
+//6. 静态方法中不能使用类的泛型  在类加载。对象还没创建
+```
+
+#### 自定义泛型接口
+
+
+
+/**
+
+- \*  泛型接口使用的说明
+- \*  1. 接口中，静态成员也不能使用泛型
+- \*  2. 泛型接口的类型, 在继承接口或者实现接口时确定
+- \*  3. 没有指定类型，默认为 Object */
+
+```
+interface IA extends IUsb<String, Double> {
+
+
+}
+
+interface IUsb<U, R> {
+		int n = 10;
+		R get(U u);
+		void hi(R r);
+		void run(R r1, R r2, U u1, U u2);
+		
+}
+
+class AA implements IA {
+@Override
+public Double get(String s) {
+return null;
+}
+@Override
+public void hi(Double aDouble) {
+}
+@Override
+public void run(Double r1, Double r2, String u1, String u2) {
+} }
+```
+
+#### 自定义泛型方法
+
+
+
+```
+//1. 下面 hi 方法不是泛型方法
+//2. 是 hi 方法使用了类声明的 泛型
+class Fish<T, R> {//泛型类
+public void run() {//普通方法
+}
+public<U,M> void eat(U u, M m) {//泛型方法
+}
+//1. 下面 hi 方法不是泛型方法
+//2. 是 hi 方法使用了类声明的 泛型  不要混淆
+public void hi(T t) {
+		
+}
+//泛型方法，可以使用类声明的泛型，
+也可以使用自己声明泛型 
+public<K> void hello(R r, K k) {  //泛型方法需要前面自定义
+System.out.println(r.getClass());//ArrayList
+System.out.println(k.getClass());//Float }
+}
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
