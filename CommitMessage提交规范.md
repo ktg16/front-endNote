@@ -55,6 +55,7 @@ Mentor 指出，是我提交时的 Commit Message 不规范造成的。
 - `revert`：回滚到某个 commit 的提交。
 - `style`：格式修改，不涉及程序逻辑。
 - `test`：涉及测试用例的修改。
+- release 公布 发布 发行
 
 （2）scope
 
@@ -110,3 +111,4 @@ commitlint 可以检查 Commit Message 是否符合 [Conventional Commits](https
 3.大驼峰写法  常用于类名，命名空间等
 
 4.在项目中目录文件夹的名字为小驼峰  ,组件的名称需要使用大驼峰
+

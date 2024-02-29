@@ -759,7 +759,7 @@ let newPromise = new Promise((resolve, reject) => {
 
   setTimeout(() => {
 
-​    resolve('成功了！') //成功输出
+​    resolve('成功了！') //成功输出 执行就会输出这个
 
 ​    reject('失败了')
 

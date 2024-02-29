@@ -183,12 +183,12 @@ vue插件都需要这种方式来注册
 
 目的是为了配合Ts使用
 
-#### (2) render 编程式地创建虚拟dom
+#### (2) render 编程式地创建虚拟dom vnode
 
 ```
 //使用方式
 render(){
-	return VNodeChild
+	return VNodeChild （虚拟节点）
 }
 render() {
     const { delay } = this;
@@ -278,6 +278,57 @@ directives:[[directive, value, arg, modifiers],[...]]
 返回一个Directive,
 
 ### 普通添加自定义指令
+
+封装motion动画库中的自定义指令v-motion
+
+```
+import { h, defineComponent, withDirectives, resolveDirective } from "vue";
+
+withDirectives resolveDirective
+
+
+/** 封装@vueuse/motion动画库中的自定义指令v-motion */
+export default defineComponent({
+  name: "Motion",
+  props: {
+    delay: {
+      type: Number,
+      default: 50
+    }
+  },
+  render() {
+    const { delay } = this;
+    const motion = resolveDirective("motion");
+    return withDirectives(
+      h(//vueJsx写法
+        "div",
+        {},
+        {
+          default: () => [this.$slots.default()]
+        }
+      ),
+      [
+        [
+          motion,
+          {
+            initial: { opacity: 0, y: 100 },
+            enter: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                delay
+              }
+            }
+          }
+        ]
+      ]
+    );
+  }
+});
+
+```
+
+
 
 
 
@@ -690,3 +741,9 @@ https://pinia.web3doc.top/core-concepts/state.html
 2)、视频
 
 西瓜视频组件 (https://v2.h5player.bytedance.com/gettingStarted/#%E5%AE%89%E8%A3%85)
+
+
+
+# pure-admin使用
+
+使用了很多插件。vueuse/motion 动画库

@@ -729,12 +729,29 @@ public void hi(T t) {
 //泛型方法，可以使用类声明的泛型，
 也可以使用自己声明泛型 
 public<K> void hello(R r, K k) {  //泛型方法需要前面自定义
-System.out.println(r.getClass());//ArrayList
-System.out.println(k.getClass());//Float }
+  System.out.println(r.getClass());//ArrayList
+  System.out.println(k.getClass());//Float }
 }
 ```
 
+### JUnit单元测试框架
 
+如果有多个功能代码测试，就需要来回注销，切换很麻烦
+
+直接运行一个方法
+
+```
+@Test
+public void m1(){
+	System.out.println("m1 方法被调用");
+}
+@Test//右键加载一个数据
+
+
+public void m2(){
+	System.out.println("m2方法被调用")
+}
+```
 
 
 

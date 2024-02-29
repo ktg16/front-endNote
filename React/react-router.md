@@ -133,3 +133,34 @@ to的用法与 cd 类似
 <NavLink style={({isActive})=>(isActive ? activeStyle : undefind))}></NavLink>
 ```
 
+### 路由跳转
+
+1.使用组件进行跳转
+
+```
+// 页面跳转
+<Link to="/otherPage">跳转到其他页面</Link>
+```
+
+```
+//组件重定向
+import { Redirect } from 'react-router-dom';
+// 重定向跳转
+<Redirect to="/otherPage" />
+```
+
+```
+import { useHistory } from 'react-router-dom';
+
+function MyComponent() {
+  const history = useHistory();
+
+  // 页面跳转
+  history.push('/otherPage');
+
+  // 重定向跳转
+  history.replace('/otherPage');
+}
+//导航跳转
+```
+
